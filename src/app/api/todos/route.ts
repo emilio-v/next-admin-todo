@@ -20,7 +20,5 @@ export async function GET(request: NextRequest) {
     skip,
   });
 
-  return NextResponse.json({
-    todos,
-  });
+  return NextResponse.json(todos);
 }
