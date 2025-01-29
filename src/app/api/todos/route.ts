@@ -22,3 +22,13 @@ export async function GET(request: NextRequest) {
 
   return NextResponse.json(todos);
 }
+
+export async function POST(request: NextRequest) {
+  const body = await request.json();
+
+  const todo = await prisma.todo.create({
+    data: body,
+  });
+
+  return NextResponse.json(todo);
+}
