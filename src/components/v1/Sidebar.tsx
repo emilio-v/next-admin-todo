@@ -1,7 +1,32 @@
 import Image from "next/image";
 import Link from "next/link";
-import { CiBookmarkCheck, CiLogout } from "react-icons/ci";
+
 import { SidebarItem } from "./SidebarItem";
+
+import { CiLogout } from "react-icons/ci";
+import {
+  IoCalendarOutline,
+  IoCheckboxOutline,
+  IoListOutline,
+} from "react-icons/io5";
+
+const munuItems = [
+  {
+    icon: <IoCalendarOutline size={24} />,
+    href: "/v1/dashboard",
+    label: "Dashboard",
+  },
+  {
+    icon: <IoCheckboxOutline size={24} />,
+    href: "/v1/dashboard/rest-todos",
+    label: "Rest Todos",
+  },
+  {
+    icon: <IoListOutline size={24} />,
+    href: "/v1/dashboard/server-todos",
+    label: "Server Actions",
+  },
+];
 
 export const Sidebar = () => {
   return (
@@ -38,13 +63,9 @@ export const Sidebar = () => {
         </div>
 
         <ul className="space-y-2 tracking-wide mt-8">
-          <SidebarItem
-            href="#"
-            label="Dashboard"
-            Icon={CiBookmarkCheck}
-            isActive
-          />
-          <SidebarItem href="#" label="Categories" Icon={CiBookmarkCheck} />
+          {munuItems.map(({ href, icon, label }) => (
+            <SidebarItem key={href} href={href} label={label} Icon={icon} />
+          ))}
         </ul>
       </div>
 

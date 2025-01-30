@@ -1,19 +1,18 @@
+"use client";
+
+import { ReactNode } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { IconType } from "react-icons";
 
 interface SidebarItemProps {
   href: string;
   label: string;
-  Icon: IconType;
-  isActive?: boolean;
+  Icon: ReactNode;
 }
 
-export const SidebarItem = ({
-  Icon,
-  href,
-  label,
-  isActive,
-}: SidebarItemProps) => {
+export const SidebarItem = ({ Icon, href, label }: SidebarItemProps) => {
+  const pathname = usePathname();
+  const isActive = pathname === href;
   return (
     <li>
       <Link
@@ -22,7 +21,7 @@ export const SidebarItem = ({
           isActive && "text-white bg-gradient-to-r from-sky-600 to-cyan-400"
         }`}
       >
-        <Icon size={30} />
+        {Icon}
         <span className="-mr-1 font-medium">{label}</span>
       </Link>
     </li>
