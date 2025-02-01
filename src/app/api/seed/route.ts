@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
 
   await prisma.todo.createMany({
     data: Array.from({ length: max }).map(() => ({
-      description: faker.lorem.lines({ min: 1, max: 3 }),
+      description: faker.lorem.lines(1),
       complete: faker.datatype.boolean(),
     })),
   });
