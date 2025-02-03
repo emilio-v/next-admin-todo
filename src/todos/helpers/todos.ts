@@ -16,3 +16,17 @@ export const updateTodo = async (
 
   return todo;
 };
+
+export const createTodo = async (description: string): Promise<PrismaTodo> => {
+  const body = { description };
+
+  const todo = await fetch(`/api/todos`, {
+    method: "POST",
+    body: JSON.stringify(body),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((res) => res.json());
+
+  return todo;
+};
