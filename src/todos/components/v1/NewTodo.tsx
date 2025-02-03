@@ -1,9 +1,11 @@
 "use client";
 
-import { createTodo, deleteCompletedTodos } from "@/todos/helpers/todos";
-import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
+import { useRouter } from "next/navigation";
 import { IoTrashOutline } from "react-icons/io5";
+
+import { addTodo } from "@/todos/actions/todo-actions";
+import { deleteCompletedTodos } from "@/todos/helpers/todos";
 
 export const NewTodo = () => {
   const [description, setDescription] = useState("");
@@ -14,8 +16,7 @@ export const NewTodo = () => {
 
     if (description.trim().length === 0) return;
 
-    await createTodo(description);
-    router.refresh();
+    await addTodo(description);
 
     setDescription("");
   };
